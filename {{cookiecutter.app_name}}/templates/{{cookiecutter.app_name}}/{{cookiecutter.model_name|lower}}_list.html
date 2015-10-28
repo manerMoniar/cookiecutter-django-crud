@@ -1,37 +1,23 @@
 {% raw %}{% extends "base.html" %}
+{% load render_table from django_tables2 %}
+
+{% block title %} Manage {% endraw %}{{ cookiecutter.model_name }}s{% raw %} {% endblock %}
+
+{% block menu %}
+    {% include 'menu.html' with active_menu='{% endraw %}{{ cookiecutter.app_name }}{% raw %}' %}
+{% endblock %}
+
+{% block page_title %} Manage {% endraw %}{{ cookiecutter.model_name }}s{% raw %} {% endblock %}
+
+{% block actions %}
+    <a class="btn btn-success" href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:create' %}" role="button"><i class="glyphicon glyphicon-plus"></i> Create</a>
+{% endblock %}
 
 {% block content %}
-    <h1>Listing</h1>
-    <a href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:create' %}">Create</a>
-    <ul>
-        {% for object in object_list %}
-            <li>
-                {{ object }}
-                <a href="{{ object.get_absolute_url }}">Details</a>
-                <a href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:update' object.pk %}">Update</a>
-                <a href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:delete' object.pk %}">Delete</a>
-            </li>
-        {% empty %}
-                <p>No items.</p>
-        {% endfor %}
-    </ul>
+    {% render_table table %}
+{% endblock %}
 
-    {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:list' %}?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:list' %}?page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
-        </div>
-    {% endif %}
-
-
+{% block body_files %}
+    <script>$(document).ready(ready_tables("{{ csrf_token }}" ,"{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:index' %}"));</script>
 {% endblock %}
 {% endraw %}
