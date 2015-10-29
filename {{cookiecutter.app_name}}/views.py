@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse_lazy
-from vanilla import CreateView, DetailView, UpdateView, DeleteView, RedirectView
+from vanilla import CreateView, DetailView, UpdateView, RedirectView
 from django_tables2 import SingleTableView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
@@ -17,6 +17,7 @@ class {{ cookiecutter.model_name }}List(SingleTableView):
 class {{ cookiecutter.model_name }}Create(SuccessMessageMixin, CreateView):
     model = {{ cookiecutter.model_name }}
     form_class = {{ cookiecutter.model_name }}Form
+    template_name_suffix = '_create'
     success_url = reverse_lazy('{{ cookiecutter.app_name }}:list')
     success_message = "%(name)s was created successfully"
 
@@ -28,6 +29,7 @@ class {{ cookiecutter.model_name }}Detail(DetailView):
 class {{ cookiecutter.model_name }}Update(SuccessMessageMixin, UpdateView):
     model = {{ cookiecutter.model_name }}
     form_class = {{ cookiecutter.model_name }}Form
+    template_name_suffix = '_update'
     success_url = reverse_lazy('{{ cookiecutter.app_name }}:list')
     success_message = "%(name)s was updated successfully"
 

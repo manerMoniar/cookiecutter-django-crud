@@ -9,8 +9,14 @@
 {% block page_title %} View {% endraw %}{{ cookiecutter.model_name }}{% raw %} {% endblock %}
 
 {% block actions %}
-    <a class="btn btn-primary" href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:update' object.id %}" role="button"><i class="glyphicon glyphicon-edit"></i> Update</a>
-    <a class="btn btn-danger delete-link" data-delete-url="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:delete' object.id %}" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+    <a class="btn btn-primary" href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:update' object.pk %}" role="button"><i class="glyphicon glyphicon-edit"></i> Update</a>
+
+    <form class="form-inline" method="POST" action="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:delete' object.pk %}">
+        {% csrf_token %}
+        <button onclick="return confirm('Are you sure you want to delete ?')" type="submit" class="btn btn-danger tooltip-btn" data-toggle="tooltip" data-placement="top" data-original-title="Delete">
+            <i class="glyphicon glyphicon-trash"></i> Delete
+        </button>
+    </form>
 {% endblock %}
 
 {% block content %}

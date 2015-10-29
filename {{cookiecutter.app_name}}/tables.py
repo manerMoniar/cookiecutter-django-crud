@@ -1,8 +1,7 @@
 import django_tables2 as tables
 from django_tables2.utils import A  # alias for Accessor
 from .models import {{ cookiecutter.model_name }}
-from django.core.urlresolvers import reverse
-from django.utils.safestring import mark_safe
+
 
 class {{ cookiecutter.model_name }}Table(tables.Table):
     name = tables.LinkColumn('{{ cookiecutter.app_name }}:detail', args=[A('pk')])
