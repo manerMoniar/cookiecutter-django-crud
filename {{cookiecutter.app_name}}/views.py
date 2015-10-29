@@ -1,12 +1,13 @@
 from django.core.urlresolvers import reverse_lazy
-from vanilla import ListView, CreateView, DetailView, UpdateView, DeleteView
+from vanilla import CreateView, DetailView, UpdateView, DeleteView
+from django_tables2 import SingleTableView
 from .forms import {{ cookiecutter.model_name }}Form
 from .models import {{ cookiecutter.model_name }}
 
 
-class {{ cookiecutter.model_name }}List(ListView):
+class {{ cookiecutter.model_name }}List(SingleTableView):
     model = {{ cookiecutter.model_name }}
-    paginate_by = 20
+    table_class = {{ cookiecutter.model_name }}Table
 
 
 class {{ cookiecutter.model_name }}Create(CreateView):

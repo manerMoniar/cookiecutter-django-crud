@@ -5,11 +5,11 @@ from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 
 class {{ cookiecutter.model_name }}Table(tables.Table):
-    name = tables.LinkColumn('images:detail_image', args=[A('pk')])
+    name = tables.LinkColumn('{{ cookiecutter.app_name }}:detail', args=[A('pk')])
     actions = tables.Column(orderable=False, empty_values=())
 
     class Meta:
-        model = Image
+        model = {{ cookiecutter.model_name }}
         fields = ('name',)
 
     def render_actions(self, record):

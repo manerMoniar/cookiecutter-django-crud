@@ -1,8 +1,29 @@
 {% raw %}{% extends "base.html" %}
 
+{% block title %} View {% endraw %}{{ cookiecutter.model_name }}{% raw %} {% endblock %}
+
+{% block menu %}
+    {% include 'menu.html' with active_menu='{% endraw %}{{ cookiecutter.app_name }}{% raw %}' %}
+{% endblock %}
+
+{% block page_title %} View {% endraw %}{{ cookiecutter.model_name }}{% raw %} {% endblock %}
+
+{% block actions %}
+    <a class="btn btn-primary" href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:update' object.id %}" role="button"><i class="glyphicon glyphicon-edit"></i> Update</a>
+    <a class="btn btn-danger delete-link" data-delete-url="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:delete' object.id %}" role="button"><i class="glyphicon glyphicon-trash"></i> Delete</a>
+{% endblock %}
+
 {% block content %}
-    <h1>Detail</h1>
-    <p>{{ object.name }}</p>
-    <a href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:list' %}">List</a>
+    <table class="table table-striped">
+        <tr>
+            <td><strong>Name</strong></td>
+            <td>{{ object.name }}</td>
+        </tr>
+    </table>
+{% endblock %}
+
+{% block body_files %}
+    <script>$(document).ready(ready_detail("{{ csrf_token }}" ,"{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:list' %}"));</script>
 {% endblock %}
 {% endraw %}
+

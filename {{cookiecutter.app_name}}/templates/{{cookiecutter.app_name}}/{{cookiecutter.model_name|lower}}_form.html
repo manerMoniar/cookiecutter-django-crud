@@ -1,15 +1,21 @@
 {% raw %}{% extends "base.html" %}
-
 {% load bootstrap3 %}
 
+{% block title %} Update {% endraw %}{{ cookiecutter.model_name }}{% raw %} {% endblock %}
+
+{% block menu %}
+    {% include 'menu.html' with active_menu='{% endraw %}{{ cookiecutter.app_name }}{% raw %}' %}
+{% endblock %}
+
+{% block page_title %} Update {% endraw %}{{ cookiecutter.model_name }}s{% raw %} {% endblock %}
+
 {% block content %}
-    <h1>Create/Update</h1>
-    <form id="{% endraw %}{{ cookiecutter.model_name|lower }}{% raw %}_form" method="post" action="." class="form">
-      {% csrf_token %}
-      {% bootstrap_form form layout='horizontal' %}
-      {% buttons %}
-        <button type="submit" class="btn btn-primary">Submit</button>
-      {% endbuttons %}
-    </form>
+	<form method="post" class="form-horizontal">
+	  {% csrf_token %}
+	  {% bootstrap_form form %}
+	  {% buttons %}
+	      <button type="submit" class="btn btn-primary">Save</button>
+	  {% endbuttons %}
+	</form>
 {% endblock %}
 {% endraw %}
