@@ -10,6 +10,6 @@
 {% block page_title %} Create {% endraw %}{{ cookiecutter.model_name }}{% raw %} {% endblock %}
 
 {% block content %}
-	{% include '{% endraw %}{{ cookiecutter.model_name|lower }}{% raw %}_form.html' %}
+	{% include '{% endraw %}{{ cookiecutter.app_name }}/{{ cookiecutter.model_name|lower }}{% raw %}_form.html' %}
 {% endblock %}
 {% endraw %}
