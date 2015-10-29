@@ -1,7 +1,9 @@
 from django.core.urlresolvers import reverse_lazy
-from vanilla import CreateView, DetailView, UpdateView, DeleteView
+from vanilla import CreateView, DetailView, UpdateView, DeleteView, RedirectView
 from django_tables2 import SingleTableView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from .forms import {{ cookiecutter.model_name }}Form
 from .models import {{ cookiecutter.model_name }}
 from .tables import {{ cookiecutter.model_name }}Table
@@ -30,6 +32,13 @@ class {{ cookiecutter.model_name }}Update(SuccessMessageMixin, UpdateView):
     success_message = "%(name)s was updated successfully"
 
 
-class {{ cookiecutter.model_name }}Delete(DeleteView):
+class {{ cookiecutter.model_name }}Delete(RedirectView):
     model = {{ cookiecutter.model_name }}
-    success_url = reverse_lazy('{{ cookiecutter.app_name }}:list')
+
+    def get_redirect_url(self, *args, **kwargs):
+        self.url = reverse_lazy('{{ cookiecutter.app_name }}:list')
+        model = get_object_or_404({{ cookiecutter.model_name }}, pk=kwargs['pk'])
+        name = model.name
+        model.delete()
+        messages.success(self.request, name + ' was deleted successfully')
+        return super({{ cookiecutter.model_name }}Delete, self).get_redirect_url(*args, **kwargs)

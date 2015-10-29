@@ -16,8 +16,4 @@
 {% block content %}
     {% render_table table %}
 {% endblock %}
-
-{% block body_files %}
-    <script>$(document).ready(ready_tables("{{ csrf_token }}" ,"{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:list' %}"));</script>
-{% endblock %}
 {% endraw %}

@@ -1,0 +1,7 @@
+{% raw %}<a class="btn btn-primary btn-sm tooltip-btn" data-toggle="tooltip" data-placement="top" data-original-title="Update" href="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:update' record.pk %}"><i class="glyphicon glyphicon-edit"></i></a>
+
+<form class="form-inline" method="POST" action="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:delete' record.pk %}">
+    {% csrf_token %}
+    <button onclick="return confirm('Are you sure you want to delete \'{{ record.name }}\' ?')" type="submit" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+</form>
+{% endraw %}

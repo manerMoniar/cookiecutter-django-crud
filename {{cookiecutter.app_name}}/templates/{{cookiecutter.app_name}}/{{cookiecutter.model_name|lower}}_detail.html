@@ -21,9 +21,4 @@
         </tr>
     </table>
 {% endblock %}
-
-{% block body_files %}
-    <script>$(document).ready(ready_detail("{{ csrf_token }}" ,"{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:list' %}"));</script>
-{% endblock %}
 {% endraw %}
-

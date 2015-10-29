@@ -6,15 +6,8 @@ from django.utils.safestring import mark_safe
 
 class {{ cookiecutter.model_name }}Table(tables.Table):
     name = tables.LinkColumn('{{ cookiecutter.app_name }}:detail', args=[A('pk')])
-    actions = tables.Column(orderable=False, empty_values=())
+    actions = tables.TemplateColumn(orderable=False, empty_values=(), template_name='{{ cookiecutter.app_name }}/{{ cookiecutter.model_name|lower }}_actions.html')
 
     class Meta:
         model = {{ cookiecutter.model_name }}
         fields = ('name',)
-
-    def render_actions(self, record):
-        link_edit = reverse("{{ cookiecutter.app_name }}:update", args=[record.pk])
-        link_delete = reverse("{{ cookiecutter.app_name }}:delete", args=[record.pk])
-        btn_edit = '<a class="btn btn-primary btn-sm tooltip-btn" data-toggle="tooltip" data-placement="top" data-original-title="Update" href=' + link_edit + '><i class="glyphicon glyphicon-edit"></i></a>'
-        btn_delete = '<a class="btn btn-danger btn-sm tooltip-btn delete-link" data-toggle="tooltip" data-placement="top" data-original-title="Delete" data-delete-url=' + link_delete + '><i class="glyphicon glyphicon-trash"></i></a>'
-        return mark_safe(btn_edit+' '+ btn_delete)
