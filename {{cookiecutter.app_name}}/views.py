@@ -1,9 +1,9 @@
 from django.core.urlresolvers import reverse_lazy
-from vanilla import CreateView, DetailView, UpdateView, RedirectView
-from django_tables2 import SingleTableView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from vanilla import CreateView, DetailView, UpdateView, RedirectView
+from django_tables2 import SingleTableView
 from .forms import {{ cookiecutter.model_name }}Form
 from .models import {{ cookiecutter.model_name }}
 from .tables import {{ cookiecutter.model_name }}Table
@@ -12,6 +12,7 @@ from .tables import {{ cookiecutter.model_name }}Table
 class {{ cookiecutter.model_name }}List(SingleTableView):
     model = {{ cookiecutter.model_name }}
     table_class = {{ cookiecutter.model_name }}Table
+    table_pagination = {'per_page': 10}
 
 
 class {{ cookiecutter.model_name }}Create(SuccessMessageMixin, CreateView):

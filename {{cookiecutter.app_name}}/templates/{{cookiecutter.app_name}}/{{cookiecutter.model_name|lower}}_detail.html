@@ -13,7 +13,7 @@
 
     <form class="form-inline" method="POST" action="{% url '{% endraw %}{{ cookiecutter.app_name }}{% raw %}:delete' object.pk %}">
         {% csrf_token %}
-        <button onclick="return confirm('Are you sure you want to delete ?')" type="submit" class="btn btn-danger tooltip-btn" data-toggle="tooltip" data-placement="top" data-original-title="Delete">
+        <button onclick="return confirm('Are you sure you want to delete?')" type="submit" class="btn btn-danger tooltip-btn" data-toggle="tooltip" data-placement="top" data-original-title="Delete">
             <i class="glyphicon glyphicon-trash"></i> Delete
         </button>
     </form>

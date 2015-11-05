@@ -46,3 +46,6 @@ output/
 
 cideos/
 .ropeproject
+
+# PyCharm
+.idea

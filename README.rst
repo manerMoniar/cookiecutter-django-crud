@@ -26,14 +26,14 @@ Quickstart
 
 .. code-block:: console
 
-    pip install -r https://raw.github.com/wildfish/cookiecutter-django-crud/master/requirements.txt
+    pip install -r https://raw.github.com/manerMoniar/cookiecutter-django-crud/master/requirements.txt
 
 
 2. Run cookiecutter using this template.  Note that **it will overwrite existing files without warning if you already have an app dir of the same name**, so make sure your code is checked in or backed up.
 
 .. code-block:: console
 
-    cookiecutter git@github.com:wildfish/cookiecutter-django-crud.git
+    cookiecutter git@github.com:manerMoniar/cookiecutter-django-crud.git
 
 
 3. You'll need to add bootstrap3 to your INSTALLED_APPS, along with your new app of course:
